@@ -1,14 +1,14 @@
+import 'package:venice_core/channels/abstractions/channel.dart';
 import 'package:venice_core/channels/channel_metadata.dart';
 import 'package:venice_core/channels/events/data_channel_event.dart';
 import 'package:venice_core/channels/abstractions/bootstrap_channel.dart';
 import 'package:venice_core/file/file_chunk.dart';
 
-
 /// A data channel is a channel that carries file data from sender to receiver.
 ///
 /// It uses a bootstrap channel to transmit connection information from sender
 /// end to receiver end.
-abstract class DataChannel {
+abstract class DataChannel extends Channel {
   /// Identifies the current channel in a unique fashion.
   ///
   /// This must have the same value on both receiving and sending ends, so that
