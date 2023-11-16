@@ -1,6 +1,9 @@
 import 'dart:ffi';
 import 'dart:typed_data';
 
+import 'package:buffer/buffer.dart';
+import 'package:flutter/material.dart';
+
 /// This class represents metadata coming with each chunk sent on the network
 /// through a channel.
 class VeniceMessage {
@@ -16,7 +19,14 @@ class VeniceMessage {
   VeniceMessage(this.messageId, this.ack, this.size, this.data);
 
   factory VeniceMessage.fromBytes(Uint8List bytes) {
-    throw UnimplementedError();
+    ByteDataReader reader = ByteDataReader();
+    reader.add(bytes);
+
+    int id = reader.readUint32();
+    bool ack = reader.readUint8() == 1;
+    int size = reader.readUint32();
+
+    return VeniceMessage(id, ack, size, []);
   }
 
   Uint8List toBytes() {
