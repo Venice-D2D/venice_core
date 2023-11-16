@@ -18,6 +18,10 @@ class VeniceMessage {
 
   VeniceMessage(this.messageId, this.ack, this.size, this.data);
 
+  factory VeniceMessage.acknowledgement(int messageId) {
+    return VeniceMessage(messageId, true, 0, []);
+  }
+
   factory VeniceMessage.fromBytes(Uint8List bytes) {
     ByteDataReader reader = ByteDataReader();
     reader.add(bytes);
