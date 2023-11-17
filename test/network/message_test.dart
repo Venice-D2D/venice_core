@@ -24,5 +24,25 @@ void main() {
         expect(message.size, size);
       });
     });
+
+    group('.toBytes', () {
+      test('should return an array of bytes', () {
+        int messageId = 42;
+        bool ack = false;
+        int size = 0;
+
+        VeniceMessage message = VeniceMessage(messageId, ack, size, []);
+        Uint8List bytes = message.toBytes();
+
+        ByteDataReader reader = ByteDataReader();
+        reader.add(bytes);
+        int mId = reader.readUint32();
+        expect(mId, messageId);
+        bool mAck = reader.readUint8() == 1;
+        expect(mAck, ack);
+        int mSize = reader.readUint32();
+        expect(mSize, size);
+      });
+    });
   });
 }
