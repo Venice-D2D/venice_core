@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:buffer/buffer.dart';
@@ -43,6 +44,19 @@ void main() {
         int mSize = reader.readUint32();
         expect(mSize, size);
       });
+    });
+
+    test('should preserve data after serialization + deserialization', () {
+      String msg = "Hello there!";
+      Uint8List msgBytes = Uint8List.fromList(utf8.encode(msg));
+      int msgSize = msgBytes.length;
+
+      // Serialization + deserialization
+      VeniceMessage message = VeniceMessage(42, false, msgSize, msgBytes);
+      Uint8List newBytes = message.toBytes();
+
+      String received = utf8.decode(newBytes);
+      expect(received, msg);
     });
   });
 }
