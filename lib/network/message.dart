@@ -34,6 +34,13 @@ class VeniceMessage {
   }
 
   Uint8List toBytes() {
-    throw UnimplementedError();
+    ByteDataWriter writer = ByteDataWriter(bufferLength: 32 + 1 + 32 + data.length);
+
+    writer.writeUint32(messageId);
+    writer.writeUint8(ack ? 1 : 0);
+    writer.writeUint32(size);
+    writer.write(data);
+
+    return writer.toBytes();
   }
 }
