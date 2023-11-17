@@ -31,7 +31,7 @@ void main() {
         bool ack = false;
         int size = 0;
 
-        VeniceMessage message = VeniceMessage(messageId, ack, size, []);
+        VeniceMessage message = VeniceMessage(messageId, ack, size, Uint8List(0));
         Uint8List bytes = message.toBytes();
 
         ByteDataReader reader = ByteDataReader();
