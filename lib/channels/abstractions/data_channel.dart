@@ -1,5 +1,5 @@
 import 'package:venice_core/channels/abstractions/channel.dart';
-import 'package:venice_core/channels/channel_metadata.dart';
+import 'package:venice_core/metadata/channel_metadata.dart';
 import 'package:venice_core/channels/events/data_channel_event.dart';
 import 'package:venice_core/channels/abstractions/bootstrap_channel.dart';
 import 'package:venice_core/network/message.dart';

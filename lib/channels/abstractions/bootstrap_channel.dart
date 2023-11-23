@@ -1,7 +1,7 @@
 import 'package:venice_core/channels/abstractions/channel.dart';
-import 'package:venice_core/channels/channel_metadata.dart';
+import 'package:venice_core/metadata/channel_metadata.dart';
 import 'package:venice_core/channels/events/bootstrap_channel_event.dart';
-import 'package:venice_core/file/file_metadata.dart';
+import 'package:venice_core/metadata/file_metadata.dart';
 
 /// A bootstrap channel is a channel that carries information about
 /// data channels from sender to receiver.
