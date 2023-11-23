@@ -8,14 +8,13 @@ class VeniceMessage {
 
   final bool ack;
 
-  // 2^18 = 256kB according to BitTorrent BEP3 : http://www.bittorrent.org/beps/bep_0003.html
-  late final int size;
-
   final Uint8List data;
 
-  VeniceMessage(this.messageId, this.ack, this.data) {
-    size = data.length;
+  int get size {
+    return data.length;
   }
+
+  VeniceMessage(this.messageId, this.ack, this.data);
 
   factory VeniceMessage.acknowledgement(int messageId) {
     return VeniceMessage(messageId, true, Uint8List(0));
@@ -32,8 +31,9 @@ class VeniceMessage {
     return VeniceMessage(id, ack, reader.read(size));
   }
 
+  // 2^18 = 256kB according to BitTorrent BEP3 : http://www.bittorrent.org/beps/bep_0003.html
   Uint8List toBytes() {
-    ByteDataWriter writer = ByteDataWriter(bufferLength: 32 + 1 + 32 + data.length);
+    ByteDataWriter writer = ByteDataWriter(bufferLength: 32 + 1 + 32 + size);
 
     writer.writeUint32(messageId);
     writer.writeUint8(ack ? 1 : 0);
