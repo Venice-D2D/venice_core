@@ -32,7 +32,7 @@ void main() {
         bool ack = false;
         int size = 0;
 
-        VeniceMessage message = VeniceMessage(messageId, ack, size, Uint8List(0));
+        VeniceMessage message = VeniceMessage(messageId, ack, Uint8List(size));
         Uint8List bytes = message.toBytes();
 
         ByteDataReader reader = ByteDataReader();
@@ -49,10 +49,9 @@ void main() {
     test('should preserve data after serialization + deserialization', () {
       String msg = "Hello there!";
       Uint8List msgBytes = utf8.encode(msg);
-      int msgSize = msgBytes.length;
 
       // Serialization + deserialization
-      VeniceMessage message = VeniceMessage(42, false, msgSize, msgBytes);
+      VeniceMessage message = VeniceMessage(42, false, msgBytes);
       Uint8List newBytes = message.toBytes();
       VeniceMessage newMessage = VeniceMessage.fromBytes(newBytes);
 
