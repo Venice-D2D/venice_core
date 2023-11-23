@@ -45,14 +45,17 @@ void main() {
     });
 
     test('should preserve data after serialization + deserialization', () {
+      int messageId = 42;
       String msg = "Hello there!";
       Uint8List msgBytes = utf8.encode(msg);
 
       // Serialization + deserialization
-      VeniceMessage message = VeniceMessage(42, false, msgBytes);
+      VeniceMessage message = VeniceMessage(messageId, false, msgBytes);
       Uint8List newBytes = message.toBytes();
       VeniceMessage newMessage = VeniceMessage.fromBytes(newBytes);
 
+      expect(newMessage.messageId, messageId);
+      expect(newMessage.ack, false);
       String received = utf8.decode(newMessage.data);
       expect(received, msg);
     });
