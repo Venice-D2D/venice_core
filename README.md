@@ -79,8 +79,8 @@ abstract class DataChannel {
   Future<void> initReceiver(ChannelMetadata data);
 
   /// Sends a file piece through current channel, and returns after successful
-  /// sending; this doesn't check if chunk was received.
-  Future<void> sendChunk(FileChunk chunk);
+  /// sending; this doesn't check if message was received.
+  Future<void> sendMessage(VeniceMessage msg);
 }
 ```
 
@@ -89,7 +89,7 @@ Your custom data channel must implement those three methods:
   socket opening;
 * `initReceiver` will be called by the receiver: it should establish connection with
   connection-opening code contained in `initSender`;
-* `sendChunk` will be called by scheduler sender-side; it should send chunk's data over
+* `sendMessage` will be called by scheduler sender-side; it should send chunk's data over
   previously-opened socket.
 
 ### Implementation strategy

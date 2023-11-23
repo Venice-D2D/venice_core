@@ -5,6 +5,6 @@ enum DataChannelEvent {
   /// acknowledged.
   acknowledgment,
 
-  /// Indicates that payload is of FileChunk type.
+  /// Indicates that payload is of VeniceMessage type.
   data
 }

@@ -2,7 +2,7 @@ import 'package:venice_core/channels/abstractions/channel.dart';
 import 'package:venice_core/channels/channel_metadata.dart';
 import 'package:venice_core/channels/events/data_channel_event.dart';
 import 'package:venice_core/channels/abstractions/bootstrap_channel.dart';
-import 'package:venice_core/file/file_chunk.dart';
+import 'package:venice_core/network/message.dart';
 
 /// A data channel is a channel that carries file data from sender to receiver.
 ///
@@ -31,5 +31,5 @@ abstract class DataChannel extends Channel {
 
   /// Sends a file piece through current channel, and returns after successful
   /// sending; this doesn't check if chunk was received.
-  Future<void> sendChunk(FileChunk chunk);
+  Future<void> sendMessage(VeniceMessage chunk);
 }
