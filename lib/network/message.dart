@@ -30,7 +30,7 @@ class VeniceMessage {
     bool ack = reader.readUint8() == 1;
     int size = reader.readUint32();
 
-    return VeniceMessage(id, ack, size, Uint8List(0));
+    return VeniceMessage(id, ack, size, reader.read(size));
   }
 
   Uint8List toBytes() {

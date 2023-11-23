@@ -12,7 +12,7 @@ void main() {
       test('should build an instance', () {
         int messageId = 15369742;
         bool isAcknowledgement = false;
-        int size = 256;
+        int size = 0;
 
         ByteDataWriter writer = ByteDataWriter(bufferLength: 32 + 1 + 32);
         writer.writeUint32(messageId);
@@ -48,14 +48,15 @@ void main() {
 
     test('should preserve data after serialization + deserialization', () {
       String msg = "Hello there!";
-      Uint8List msgBytes = Uint8List.fromList(utf8.encode(msg));
+      Uint8List msgBytes = utf8.encode(msg);
       int msgSize = msgBytes.length;
 
       // Serialization + deserialization
       VeniceMessage message = VeniceMessage(42, false, msgSize, msgBytes);
       Uint8List newBytes = message.toBytes();
+      VeniceMessage newMessage = VeniceMessage.fromBytes(newBytes);
 
-      String received = utf8.decode(newBytes);
+      String received = utf8.decode(newMessage.data);
       expect(received, msg);
     });
   });
