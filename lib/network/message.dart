@@ -1,8 +1,5 @@
-import 'dart:ffi';
 import 'dart:typed_data';
-
 import 'package:buffer/buffer.dart';
-import 'package:flutter/material.dart';
 
 /// This class represents metadata coming with each chunk sent on the network
 /// through a channel.
