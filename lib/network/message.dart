@@ -20,6 +20,10 @@ class VeniceMessage {
     return VeniceMessage(messageId, true, Uint8List(0));
   }
 
+  factory VeniceMessage.data(int messageId, Uint8List data) {
+    return VeniceMessage(messageId, false, data);
+  }
+
   factory VeniceMessage.fromBytes(Uint8List bytes) {
     ByteDataReader reader = ByteDataReader();
     reader.add(bytes);
