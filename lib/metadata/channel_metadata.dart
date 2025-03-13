@@ -9,6 +9,9 @@ class ChannelMetadata {
   /// Physical address of the server socket.
   final String address;
 
+  /// Port of the server socket.
+  final int port;
+
   /// Name of the access point (needed for Wi-Fi, for instance).
   final String apIdentifier;
 
@@ -16,12 +19,13 @@ class ChannelMetadata {
   final String password;
 
   ChannelMetadata(
-      this.channelIdentifier, this.address, this.apIdentifier, this.password);
+      this.channelIdentifier, this.address, this.apIdentifier, this.password,
+      this.port);
 
 
   @override
   String toString() {
-    return "$channelIdentifier;$address;$apIdentifier;$password";
+    return "$channelIdentifier;$address;$apIdentifier;$password;$port";
   }
 
   @override
@@ -30,10 +34,11 @@ class ChannelMetadata {
         && channelIdentifier == other.channelIdentifier
         && address == other.address
         && apIdentifier == other.apIdentifier
-        && password == other.password;
+        && password == other.password
+        && port == other.port;
   }
 
   @override
   int get hashCode => Object.hash(
-      channelIdentifier, address, apIdentifier, password);
+      channelIdentifier, address, apIdentifier, password, port);
 }

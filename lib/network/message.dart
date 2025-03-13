@@ -1,5 +1,8 @@
 import 'dart:typed_data';
+import 'dart:convert';
 import 'package:buffer/buffer.dart';
+
+import '/protobuf/venice.pb.dart';
 
 /// This class represents metadata coming with each chunk sent on the network
 /// through a channel.
@@ -8,7 +11,7 @@ class VeniceMessage {
 
   final bool ack;
 
-  final Uint8List data;
+  final Uint8List data; //should be List<int> ???
 
   int get size {
     return data.length;
@@ -45,5 +48,34 @@ class VeniceMessage {
     writer.write(data);
 
     return writer.toBytes();
+  }
+
+  // Deserialize from JSON
+  factory VeniceMessage.fromJson(String jsonString) {
+    final Map<String, dynamic> json = jsonDecode(jsonString);
+    return VeniceMessage(
+      json['messageId'] as int,
+      json['ack'] as bool,
+      base64Decode(json['data']),
+    );
+  }
+
+  // Serialize to JSON
+  String toJson() {
+    final json = {
+      'messageId': messageId,
+      'ack': ack,
+      'data': base64Encode(data),
+    };
+    return jsonEncode(json);
+  }
+
+  // Deserialize from protobuf
+  factory VeniceMessage.fromProtoBuf(VeniceMessageProto msg) {
+    return VeniceMessage(
+      msg.messageId,
+      msg.ack,
+      Uint8List.fromList(msg.data),
+    );
   }
 }
