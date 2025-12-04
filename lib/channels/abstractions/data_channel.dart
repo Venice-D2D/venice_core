@@ -14,6 +14,11 @@ abstract class DataChannel extends Channel {
   /// This must have the same value on both receiving and sending ends, so that
   /// channel metadata from sender is forwarded to corresponding receiver only.
   final String identifier;
+
+  /// The channel metadata used for the connection (receiver) or to accept
+  /// connections (sender)
+  ChannelMetadata data= ChannelMetadata("", "", "", "", -1);
+
   DataChannel(this.identifier);
 
   /// Provides information to sending and receiving ends about what's happening
@@ -32,4 +37,6 @@ abstract class DataChannel extends Channel {
   /// Sends a file piece through current channel, and returns after successful
   /// sending; this doesn't check if chunk was received.
   Future<void> sendMessage(VeniceMessage chunk);
+
+  Future<void> dealWithClientConnections();
 }
