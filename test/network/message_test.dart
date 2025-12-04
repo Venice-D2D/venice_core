@@ -47,7 +47,8 @@ void main() {
     test('should preserve data after serialization + deserialization', () {
       int messageId = 42;
       String msg = "Hello there!";
-      Uint8List msgBytes = utf8.encode(msg);
+      Uint8List msgBytes = Uint8List.fromList(msg.toString().codeUnits);
+      //Uint8List msgBytes = utf8.encode(msg);
 
       // Serialization + deserialization
       VeniceMessage message = VeniceMessage(messageId, false, msgBytes);
