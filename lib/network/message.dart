@@ -70,6 +70,15 @@ class VeniceMessage {
     return jsonEncode(json);
   }
 
+  // Serialize to ProtoBuf
+  VeniceMessageProto toProtoBuf() {
+    VeniceMessageProto msg = VeniceMessageProto();
+    msg.messageId= messageId;
+    msg.ack= ack;
+    msg.data= data.toList();
+    return msg;
+  }
+
   // Deserialize from protobuf
   factory VeniceMessage.fromProtoBuf(VeniceMessageProto msg) {
     return VeniceMessage(
