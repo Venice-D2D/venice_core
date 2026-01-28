@@ -9,17 +9,16 @@ void main() {
     group('.fromBytes', () {
       test('should build an instance', () {
         int messageId = 15369742;
-        bool isAcknowledgement = false;
         int size = 0;
 
         ByteDataWriter writer = ByteDataWriter(bufferLength: 32 + 1 + 32);
         writer.writeUint32(messageId);
-        writer.writeUint8(isAcknowledgement ? 1 : 0);
+        writer.writeUint8(0);
         writer.writeUint32(size);
 
         VeniceMessage message = VeniceMessage.fromBytes(writer.toBytes());
         expect(message.messageId, messageId);
-        expect(message.ack, isAcknowledgement);
+        expect(message.ack, false);
         expect(message.size, size);
       });
     });
