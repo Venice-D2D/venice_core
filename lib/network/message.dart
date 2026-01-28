@@ -2,7 +2,7 @@ import 'dart:typed_data';
 import 'dart:convert';
 import 'package:buffer/buffer.dart';
 
-import '/protobuf/venice.pb.dart';
+import 'package:venice_core/external/protobuf/dart_proto/protos/venice.pb.dart';
 
 /// This class represents metadata coming with each chunk sent on the network
 /// through a channel.
