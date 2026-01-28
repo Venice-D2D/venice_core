@@ -11,7 +11,7 @@ class VeniceMessage {
 
   final bool ack;
 
-  final Uint8List data; //should be List<int> ???
+  final Uint8List data;
 
   int get size {
     return data.length;
