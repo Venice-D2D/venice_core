@@ -38,5 +38,6 @@ abstract class DataChannel extends Channel {
   /// sending; this doesn't check if chunk was received.
   Future<void> sendMessage(VeniceMessage chunk);
 
+  /// Accepts and deals with connections/requests from remote clients
   Future<void> dealWithClientConnections();
 }
