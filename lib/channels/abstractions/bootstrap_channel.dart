@@ -14,7 +14,7 @@ abstract class BootstrapChannel extends Channel {
   late Function(BootstrapChannelEvent event, dynamic data) on;
 
   /// Initializes current channel, and returns when it is ready to send data.
-  Future<void> initSender();
+  Future<void> initSender(FileMetadata fileMetadata, ChannelMetadata channelData);
 
   /// Initializes current channel, and returns when it is ready to receive data.
   Future<void> initReceiver();
