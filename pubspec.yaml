@@ -2,7 +2,7 @@ name: venice_core
 description: This project aims at providing a unified abstract interface to exchange data between devices using different technologies.
 
 publish_to: 'none'
-version: 1.0.0+1
+version: 0.0.1
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
